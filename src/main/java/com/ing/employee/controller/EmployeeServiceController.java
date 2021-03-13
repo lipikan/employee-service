@@ -3,11 +3,11 @@ package com.ing.employee.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
+@Validated
 public class EmployeeServiceController {
 	
 	@Autowired
@@ -28,13 +29,22 @@ public class EmployeeServiceController {
 	public ResponseEntity<?> updateEmployee(@PathVariable String employeeId, @RequestBody EmployeeDto employee)
 	      throws JsonProcessingException, ResourceNotFoundException {
 	    log.info("Inside EmployeeServiceController :: updateEmployee");
+	    ResponseEntity<?> updateEmployeeResponseEntity = null;
 	    if (employeeId == null || employee == null) {
-	      log.error("EmployeeServiceController.updateEmployee():: employee details cannot be null :: {}",
+	      log.error("EmployeeServiceController.updateEmployee():: employee details or employee id cannot be null",
 	          HttpStatus.BAD_REQUEST);
-	      return new ResponseEntity<>("employee details cannot be null :: {}", HttpStatus.BAD_REQUEST);
+	      return new ResponseEntity<>("employee details or employee id cannot be null", HttpStatus.BAD_REQUEST);
 	    }
-	    ResponseEntity<?> updateEmployeeResponseEntity = employeeService.updateEmployee(employeeId,
-	        employee);
+	    try {
+	    	Long empId = Long.parseLong(employeeId);
+	    	updateEmployeeResponseEntity = employeeService.updateEmployee(empId,
+	    	        employee);
+	    	
+	    } catch(NumberFormatException ex) {
+	    	log.error("EmployeeServiceController.updateEmployee():: employee Id should contain numbers only :: {}",
+	  	          HttpStatus.BAD_REQUEST);
+	  	      return new ResponseEntity<>("employee Id should contain numbers only", HttpStatus.BAD_REQUEST);
+	    }
 	    log.info("End EmployeeServiceController :: updateEmployee");
 	    return updateEmployeeResponseEntity;
 	}
@@ -43,11 +53,20 @@ public class EmployeeServiceController {
 	public ResponseEntity<?> getEmployeeDetails(@PathVariable String employeeId) throws JsonProcessingException, ResourceNotFoundException
 	{
 		log.info("Inside EmployeeServiceController :: getEmployeeDetails");
+		ResponseEntity<EmployeeDto> getEmployeeDetailsResponseEntity = null;
 	    if (employeeId == null) {
-	      log.error("EmployeeServiceController.getEmployeeDetails():: employee Id cannot be null :: {}", HttpStatus.BAD_REQUEST);
-	      return new ResponseEntity<>("employee Id cannot be null :: {}", HttpStatus.BAD_REQUEST);
+	      log.error("EmployeeServiceController.getEmployeeDetails():: employee Id cannot be null ", HttpStatus.BAD_REQUEST);
+	      return new ResponseEntity<>("employee Id cannot be null ", HttpStatus.BAD_REQUEST);
 	    }
-	    ResponseEntity<EmployeeDto> getEmployeeDetailsResponseEntity = employeeService.getEmployeeDetails(employeeId);
+	    try {
+	    	Long empId = Long.parseLong(employeeId);
+	    	getEmployeeDetailsResponseEntity = employeeService.getEmployeeDetails(empId);
+	    } catch(NumberFormatException ex) {
+	    	log.error("EmployeeServiceController.updateEmployee():: employee Id should contain numbers only :: {}",
+	  	          HttpStatus.BAD_REQUEST);
+	  	      return new ResponseEntity<>("employee Id should contain numbers only ", HttpStatus.BAD_REQUEST);
+	    }
+	    
 	    log.info("End EmployeeServiceController :: getEmployeeDetails");
 	    return getEmployeeDetailsResponseEntity;
 		

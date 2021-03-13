@@ -23,7 +23,7 @@ public class Address {
 
 	 @Id
 	 @Column(name = "emp_id")
-	 private String empId;
+	 private Long empId;
 	 
 	 @Column(name = "street")
 	 private String street;

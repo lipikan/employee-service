@@ -2,8 +2,8 @@ package com.ing.employee.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ing.employee.dto.EmployeeDto;
 import com.ing.employee.exception.ResourceNotFoundException;
@@ -11,7 +11,8 @@ import com.ing.employee.mapper.EmployeeConverter;
 import com.ing.employee.models.Employee;
 import com.ing.employee.repository.EmployeeRepository;
 
-@Component
+@Repository
+@Transactional(readOnly = true)
 public class EmployeeMgmtService {
 	
 	@Autowired
@@ -20,7 +21,8 @@ public class EmployeeMgmtService {
 	@Autowired
 	private EmployeeConverter employeeConverter;
 
-	public ResponseEntity<EmployeeDto> updateEmployee(String employeeId, EmployeeDto employee) throws ResourceNotFoundException {
+	@Transactional
+	public ResponseEntity<EmployeeDto> updateEmployee(Long employeeId, EmployeeDto employee) throws ResourceNotFoundException {
 		
 		Employee existingEmployee = employeeRepository
 										.findById(employeeId)
@@ -34,7 +36,7 @@ public class EmployeeMgmtService {
 		
 	}
 	
-	public ResponseEntity<EmployeeDto> getEmployeeDetails(String employeeId) throws ResourceNotFoundException {
+	public ResponseEntity<EmployeeDto> getEmployeeDetails(Long employeeId) throws ResourceNotFoundException {
 		Employee employeeDetails = employeeRepository
 				.findById(employeeId)
 				.orElseThrow(() -> new ResourceNotFoundException("Employee not found :: " + employeeId));

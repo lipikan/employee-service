@@ -20,13 +20,13 @@ CREATE TABLE address (
 );
 
 INSERT INTO employees (emp_id, first_name, last_name, gender, title) VALUES
-('12231', 'Aliko', 'Dangote', 'male', 'Mr'),
-('12232', 'Bill', 'Gates', 'male', 'Mr'),
-('12233','Folrunsho', 'Alakija', 'female', 'Ms'),
-('12234','Oprah', 'Winfrey', 'female', 'Ms');
+(12231, 'Aliko', 'Dangote', 'male', 'Mr'),
+(12232, 'Bill', 'Gates', 'male', 'Mr'),
+(12233,'Folrunsho', 'Alakija', 'female', 'Ms'),
+(12234,'Oprah', 'Winfrey', 'female', 'Ms');
 
 INSERT INTO address (emp_id, street, city, state, post_code) VALUES
-('12231', '1 Market Street', 'San Francisco', 'CA', 1122),
-('12232', '2 Elm Street', 'San Francisco', 'CA', 1221),
-('12233', '3 Main Street', 'Boston', 'MA', 1226),
-('12234', '3 Phillip Street', 'Miami', 'Florida', 1213);
+(12231, '1 Market Street', 'San Francisco', 'CA', 1122),
+(12232, '2 Elm Street', 'San Francisco', 'CA', 1221),
+(12233, '3 Main Street', 'Boston', 'MA', 1226),
+(12234, '3 Phillip Street', 'Miami', 'Florida', 1213);
