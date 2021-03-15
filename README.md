@@ -122,3 +122,10 @@ You can see the database console by following link
 http://localhost:8080/h2-console
 
 ```
+
+NOTE: 
+```
+I have included the Postman collection under the folder Postman_Collection
+
+EmployeeService.postman_collection.json
+```
