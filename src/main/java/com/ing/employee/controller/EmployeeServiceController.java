@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @Slf4j
 @Validated
+@RequestMapping("/api/v1")
 public class EmployeeServiceController {
 	
 	@Autowired
@@ -72,14 +74,5 @@ public class EmployeeServiceController {
 		
 	}
 	
-	@GetMapping("/employees")
-	public ResponseEntity<?> getEmployeeDetails() throws JsonProcessingException, ResourceNotFoundException
-	{
-		log.info("Inside EmployeeServiceController :: getEmployeeDetails");
-	    System.out.println("I am here");
-	    log.info("End EmployeeServiceController :: getEmployeeDetails");
-	    return null;
-		
-	}
 
 }

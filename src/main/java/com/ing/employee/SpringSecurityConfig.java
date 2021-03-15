@@ -19,7 +19,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    // Secure the endpoins with HTTP Basic authentication
+    // Secure the endpoints with HTTP Basic authentication
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -28,8 +28,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/employees/**").hasRole("USER")
-                .antMatchers(HttpMethod.PATCH, "/employees/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/v1/employees/**").hasRole("USER")
+                .antMatchers(HttpMethod.PATCH, "/api/v1/employees/**").hasRole("ADMIN")
                 .and()
                 .csrf().disable()
                 .formLogin().disable();

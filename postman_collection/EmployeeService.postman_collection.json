@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "e9f19e0b-bdb2-446a-bbe0-46b33f4fc9a2",
+		"name": "EmployeeService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "UpdateEmployee",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Aliko1\",\n    \"lastName\": \"Dangote4\",\n    \"gender\": \"male\",\n    \"title\": \"Mr\",\n    \"address\": {\n        \"street\": \"3 Market Street\",\n        \"city\": \"San Francisco\",\n        \"state\": \"CA\",\n        \"postCode\": 1123\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/employees/12231",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"employees",
+						"12231"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Employee Details",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Aliko1\",\n    \"lastName\": \"Dangote2\",\n    \"gender\": \"male\",\n    \"title\": \"Mr\",\n    \"address\": {\n        \"street\": \"1 Market Street\",\n        \"city\": \"San Francisco\",\n        \"state\": \"CA\",\n        \"postCode\": 1122\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/employees/12231",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"employees",
+						"12231"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
