@@ -93,13 +93,9 @@ To run the application you can go to the HOME directory and follow the below ste
 - Build the project 
  ./mvnw install 
 
-- To build the docker image please run the below coammand
- docker build -t springio/employee-service .
+- To run the project you can run the below command
 
-- To run the docker image please run the below command
-
-docker run -p 8080:8080 -t springio/employee-service
-
+ java -jar /target/employee-service-0.0.1-SNAPSHOT.jar
 
 
 ```
